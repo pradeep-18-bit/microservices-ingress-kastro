@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_HUB_REPO = 'kastrov/techsolutions-app'
-        K8S_CLUSTER_NAME = 'kastro-cluster'
-        AWS_REGION = 'us-east-1'
+        DOCKER_HUB_REPO = 'pradeep065/techsolutions-app'
+        K8S_CLUSTER_NAME = 'pradeep065-cluster'
+        AWS_REGION = 'ap-south-1'
         NAMESPACE = 'default'
         APP_NAME = 'techsolutions'
     }
@@ -52,7 +52,7 @@ pipeline {
                 script {
                     withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-creds']]) {
                         sh "aws configure set region ${AWS_REGION}"
-                        sh "aws eks update-kubeconfig --region ${AWS_REGION} --name ${K8S_CLUSTER_NAME}"
+                        sh "aws eks update-kubeconfig --region ap-south-1 --name pradeep-cluster"
                         sh "kubectl config current-context"
                         sh "kubectl get nodes"
                     }
